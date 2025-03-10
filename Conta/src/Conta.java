@@ -12,10 +12,15 @@ public Conta(int numero, int agencia, int digito){
     this.numero = numero;
     this.agencia = agencia;
     this.digito = digito;
+    this.saldo = 0;
 }
 
     public int setSenha(int senha){
         return this.senha = senha;
+    }
+
+    public int getsenha(){
+        return this.senha;
     }
 
     public String getTitular(){
@@ -53,11 +58,20 @@ public Conta(int numero, int agencia, int digito){
 
     public void setDepositar( int deposito){
        saldo += deposito;
+       System.out.println("Saldo total: "+ saldo);
     }
     public void setSaque(int saque){
-        saldo += saque;
+        if(saque> saldo){
+            System.out.println("Fundos insuficientes, saldo total: " + saldo);
+        }
+        else{
+            saldo -= saque;
+            System.out.println("Saldo total: "+ saldo);
+        }
     }
-
+    public int getsaldo(){
+        return saldo;
+    }
 
     public int mostrarSaldo(){
         return saldo;
