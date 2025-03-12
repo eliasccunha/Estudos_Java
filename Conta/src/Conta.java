@@ -15,8 +15,8 @@ public Conta(int numero, int agencia, int digito){
     this.saldo = 0;
 }
 
-    public int setSenha(int senha){
-        return this.senha = senha;
+    public void setSenha(int senha){
+         this.senha = senha;
     }
 
     public int getsenha(){
@@ -26,8 +26,9 @@ public Conta(int numero, int agencia, int digito){
     public String getTitular(){
         return this.titular;
     }
+
     public void setTitular(String t){
-        this.titular = t;
+         this.titular = t;
     }
 
     public int getNumero(){
@@ -56,11 +57,11 @@ public Conta(int numero, int agencia, int digito){
         System.out.println("Agencia: " + this.getAgencia() + " numero: " + this.getNumero() + " digito: " + this.getDigito());
     }
 
-    public void setDepositar( int deposito){
+    public void Depositar( int deposito){
        saldo += deposito;
        System.out.println("Saldo total: "+ saldo);
     }
-    public void setSaque(int saque){
+    public void Saque(int saque){
         if(saque> saldo){
             System.out.println("Fundos insuficientes, saldo total: " + saldo);
         }
@@ -69,8 +70,8 @@ public Conta(int numero, int agencia, int digito){
             System.out.println("Saldo total: "+ saldo);
         }
     }
-    public int getsaldo(){
-        return saldo;
+    public void saldo(){
+         System.out.println("Saldo Total = "+ this.saldo);
     }
 
     public int mostrarSaldo(){
