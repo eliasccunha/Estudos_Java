@@ -2,12 +2,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Campeonato de Porradarias");
         System.out.println("Quantos lutadores vão participar?");
@@ -33,26 +27,28 @@ public class Main {
             System.out.print("Peso: ");
             double cadastropeso = scanner.nextDouble();
 
-            System.out.print("Derrotas: ");
-            int cadastroderrotas = scanner.nextInt();
 
-            System.out.print("Vitorias: ");
-            int cadastrovitorias = scanner.nextInt();
-
-            System.out.print("Empates: ");
-            int cadastroempates = scanner.nextInt();
-
-            lutadores[i] = new Lutador(cadastronome, cadastronacionalidade, cadastroidade, cadastroaltura, cadastropeso, cadastroderrotas, cadastrovitorias, cadastroempates);
+            lutadores[i] = new Lutador(cadastronome, cadastronacionalidade, cadastroidade, cadastroaltura, cadastropeso);
 
         }
-        boolean temporada = true;
-
-        while(temporada){
+            Luta lutas = new Luta();
 
 
 
+            for(int j = 0 ; j < participantes / 2; j++){
+                int t = 0;
+                lutas.marcarLuta(lutadores[t], lutadores[t + 1]);
+                lutas.lutar(lutadores[t], lutadores[t + 1]);
+            }
+
+            for(int i = 0 ; i < participantes / 2; i++){
+                lutadores[i].apresentar();
+                lutadores[i].statusLutador();
+                System.out.println();
+                lutadores[i + 1].apresentar();
+                lutadores[i + 1].statusLutador();
+            }
 
 
-        }
     }
 }

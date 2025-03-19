@@ -10,16 +10,16 @@ public class Lutador {
     private int empate;
 
 
-    public Lutador(String nome, String nacionalidade, int idade, double altura, double peso, int derrotas, int vitorias, int empate){
+    public Lutador(String nome, String nacionalidade, int idade, double altura, double peso){
         this.nome = nome;
         this.nacionalidade = nacionalidade;
         this.idade = idade;
         this.altura = altura;
         this.peso = peso;
         this.setCategoria(peso);
-        this.derrotas = derrotas;
-        this.vitorias = vitorias;
-        this.empate = empate;
+        this.derrotas = 0;
+        this.vitorias = 0;
+        this.empate = 0;
     }
 
 
@@ -68,13 +68,13 @@ public class Lutador {
     }
 
     public void setCategoria(double peso) {
-        if(peso <= 70 && peso >= 65){
+        if(peso < 70f){
             this.categoria = "leve";
         }
-        else if(peso > 70 && peso <= 83){
+        else if(peso > 70f && peso <= 83f){
             this.categoria = "medio";
         }
-        else if(peso > 83 && peso <= 110){
+        else if(peso > 83f && peso <= 110f){
             this.categoria = "pesado";
         }
         else{
@@ -107,37 +107,33 @@ public class Lutador {
     }
 
     ///  metodos
-    private void Apresentar(){
-        System.out.println("O " + this.getNome() + " nacionalidade " + this.getNacionalidade()  + "com " +this.getVitorias()
-                + "vitorias, "+ this.getDerrotas() + "derrotas e " + this.getEmpate() + "empates " );
+    public void apresentar(){
+        System.out.println("O " + this.getNome() + " nacionalidade " + this.getNacionalidade());
         System.out.println("Ele tem " + this.getAltura() + " de altura com " + this.getPeso() + "kilos e com " + this.getIdade() + " anos ele luta na categoria " + this.getCategoria());
 
     }
 
-    private void ganharLuta(){
+    public void ganharLuta(){
         this.setVitorias(this.getVitorias() + 1);
     }
 
-    private void empatarLuta(){
+    public void empatarLuta(){
         this.setEmpate(this.getEmpate() + 1);
     }
 
-    private void perderLuta(){
+    public void perderLuta(){
         this.setDerrotas(this.getDerrotas() + 1);
     }
 
-    private void statusLutador(){
-        int totaldelutas = this.getDerrotas() + this.getEmpate() + this.getVitorias();
+    public void statusLutador(){
 
-        double taxadevitorias = (totaldelutas / (double)this.getVitorias()) * 100;
-        double taxadederrotas = (totaldelutas / (double)this.getDerrotas()) * 100;
-        double taxadeempates = (totaldelutas / (double)this.getEmpate()) * 100;
 
-        System.out.printf("Taxa de vitorias %.1f, com %d vitorias\n", taxadevitorias, this.getVitorias());
-        System.out.printf("Taxa de derrotas %.1f, com %d derrotas\n", taxadederrotas, this.getDerrotas());
-        System.out.printf("Taxa de empates %.1f, com %d empates\n", taxadeempates, this.getEmpate());
+        System.out.printf(" vitorias %d \n", this.getVitorias());
+        System.out.printf(" Derrotas %d \n", this.getDerrotas());
+        System.out.printf(" Empates  %d \n", this.getEmpate());
 
 
     }
+
 
 }
