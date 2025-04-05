@@ -1,4 +1,4 @@
-public class Pessoa {
+public abstract class Pessoa {
     private String nome = "nada";
     private int idade = 0 ;
     private  String sexo = null;
