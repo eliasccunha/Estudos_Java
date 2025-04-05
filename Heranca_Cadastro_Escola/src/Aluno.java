@@ -1,6 +1,6 @@
 public class Aluno extends  Pessoa{
     private  boolean matricula = true;
-    private String curso;
+    private String curso = null;
 
     public void cancelarMatricula(){
         this.matricula = false;

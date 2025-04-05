@@ -1,7 +1,9 @@
 public class Pessoa {
-    private String nome;
-    private int idade;
-    private  String sexo;
+    private String nome = "nada";
+    private int idade = 0 ;
+    private  String sexo = null;
+
+
 
     public void fazerAniversario (){
         this.idade++;
@@ -35,4 +37,5 @@ public class Pessoa {
         System.out.println("Nome: " + this.getNome());
         System.out.println("sexo: " + this.getSexo() + ", idade: " + this.getIdade());
     }
+
 }

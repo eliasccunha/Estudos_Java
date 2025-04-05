@@ -1,10 +1,19 @@
 public class Funcionario extends Pessoa{
-    private String setor;
-    private float salario;
+    private String setor = null;
+    private float salario = 0;
     private boolean trabalhando = true;
 
     public void cancelarTrabalhando(){
         this.trabalhando = false;
+    }
+
+    public void statusTrabalho(){
+        if(this.trabalhando){
+            System.out.println("Funcionario faz parte do quadro de funcionarios");
+        }
+        else{
+            System.out.println("Funcionario não faz parte do quadro de funcionarios");
+        }
     }
 
     public String getSetor() {
