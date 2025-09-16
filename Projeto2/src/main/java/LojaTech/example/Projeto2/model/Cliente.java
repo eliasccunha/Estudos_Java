@@ -1,11 +1,6 @@
 package LojaTech.example.Projeto2.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -17,14 +12,23 @@ public class Cliente {
     @NotBlank
     private String nome;
 
-    @Email
-    @Column(unique = true)
+    @NotBlank
     private String email;
 
     @NotBlank
     private String senha;
 
-    private boolean ativo = false; // só ativa pelo email
+    private boolean ativo = false;
 
     // getters e setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getSenha() { return senha; }
+    public void setSenha(String senha) { this.senha = senha; }
+    public boolean isAtivo() { return ativo; }
+    public void setAtivo(boolean ativo) { this.ativo = ativo; }
 }

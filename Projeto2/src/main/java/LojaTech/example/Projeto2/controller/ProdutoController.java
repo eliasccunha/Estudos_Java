@@ -2,67 +2,58 @@ package LojaTech.example.Projeto2.controller;
 
 import LojaTech.example.Projeto2.model.Produto;
 import LojaTech.example.Projeto2.repository.ProdutoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-    private final ProdutoRepository repository;
-
-    public ProdutoController(ProdutoRepository repository) {
-        this.repository = repository;
-    }
-
-    @PostMapping
-    public Produto criar(@RequestBody Produto produto) {
-        return repository.save(produto);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Produto> atualizar(@PathVariable Long id, @RequestBody Produto produto) {
-        return repository.findById(id)
-                .map(p -> {
-                    p.setNome(produto.getNome());
-                    p.setPreco(produto.getPreco());
-                    p.setDescricao(produto.getDescricao());
-                    p.setDestaque(produto.isDestaque());
-                    return ResponseEntity.ok(repository.save(p));
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        if (repository.existsById(id)) {
-            repository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
-    }
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
-        return repository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Produto> getProduto(@PathVariable Long id) {
+        return produtoRepository.findById(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<Produto> listarTodos() {
-        return repository.findAll();
+        return produtoRepository.findAll();
     }
 
     @GetMapping("/vitrine")
     public List<Produto> listarDestaques() {
-        return repository.findByDestaqueTrue();
+        return produtoRepository.findByDestaqueTrue();
     }
 
     @GetMapping("/busca")
-    public List<Produto> buscarPorNome(@RequestParam String termo) {
-        return repository.findByNomeContainingIgnoreCase(termo);
+    public List<Produto> buscar(@RequestParam String termo) {
+        return produtoRepository.findByNomeContainingIgnoreCase(termo);
+    }
+
+    @PostMapping
+    public Produto criar(@RequestBody Produto p) {
+        return produtoRepository.save(p);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Produto> atualizar(@PathVariable Long id, @RequestBody Produto p) {
+        return produtoRepository.findById(id).map(produto -> {
+            produto.setNome(p.getNome());
+            produto.setPreco(p.getPreco());
+            produto.setDestaque(p.isDestaque());
+            produto.setDescricao(p.getDescricao());
+            return ResponseEntity.ok(produtoRepository.save(produto));
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        produtoRepository.deleteById(id);
     }
 }
