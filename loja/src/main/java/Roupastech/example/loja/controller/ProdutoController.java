@@ -65,4 +65,9 @@ public class ProdutoController {
     public void deletar(@PathVariable Long id) {
         produtoRepository.deleteById(id);
     }
+
+
+
+    
+    
 }

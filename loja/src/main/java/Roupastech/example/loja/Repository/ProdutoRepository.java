@@ -11,4 +11,7 @@ import Roupastech.example.loja.model.Produto;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     List<Produto> findByDestaqueTrue();
     List<Produto> findByNomeContainingIgnoreCase(String termo);
+    
+    
 }
+

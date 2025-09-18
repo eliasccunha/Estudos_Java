@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,18 +24,10 @@ public class ClienteController {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @Autowired
-    private JavaMailSender mailSender;
-
     @PostMapping
     public Cliente criar(@RequestBody Cliente c) {
-        Cliente clienteSalvo = clienteRepository.save(c);
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(c.getEmail());
-        message.setSubject("Confirme seu cadastro");
-        message.setText("Clique no link para ativar: http://localhost:8080/clientes/ativar/" + c.getId());
-        mailSender.send(message);
-        return clienteSalvo;
+        // apenas salva no banco, sem envio de email
+        return clienteRepository.save(c);
     }
 
     @PutMapping("/{id}")
@@ -82,3 +72,4 @@ public class ClienteController {
         }).orElse(ResponseEntity.notFound().build());
     }
 }
+////// esse aqui 

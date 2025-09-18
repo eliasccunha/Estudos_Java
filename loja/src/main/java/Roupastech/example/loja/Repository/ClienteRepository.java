@@ -11,3 +11,4 @@ import Roupastech.example.loja.model.Cliente;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Optional<Cliente> findByEmailAndSenha(String email, String senha);
 }
+

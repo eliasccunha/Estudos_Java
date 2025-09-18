@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+// import org.springframework.mail.SimpleMailMessage;
+// import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,17 +25,17 @@ public class PedidoController {
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    @Autowired
-    private JavaMailSender mailSender;
+    // @Autowired
+    // private JavaMailSender mailSender;
 
     @PostMapping
     public Pedido criar(@RequestBody Pedido p) {
         Pedido pedidoSalvo = pedidoRepository.save(p);
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(p.getCliente().getEmail());
-        message.setSubject("Pedido confirmado");
-        message.setText("Seu pedido #" + pedidoSalvo.getId() + " foi recebido com sucesso!");
-        mailSender.send(message);
+    // SimpleMailMessage message = new SimpleMailMessage();
+    // message.setTo(p.getCliente().getEmail());
+    // message.setSubject("Pedido confirmado");
+    // message.setText("Seu pedido #" + pedidoSalvo.getId() + " foi recebido com sucesso!");
+    // mailSender.send(message);
         return pedidoSalvo;
     }
 
@@ -67,5 +67,7 @@ public class PedidoController {
     public List<Pedido> listarTodos() {
         return pedidoRepository.findAll();
     }
+
+    
 }
 
